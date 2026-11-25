@@ -237,18 +237,26 @@ body {
     vertical-align: middle;
 }
 
+#sound-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #1a1a1a;
+    border: 2px solid #F39C12;
+    border-radius: 25px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+#sound-toggle:hover {
+    transform: scale(1.05);
+    background-color: #F39C12;
+    color: #ffffff;
+}
 
