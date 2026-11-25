@@ -16,11 +16,36 @@ const AudioCtx = window.AudioContext || window.webkitAudioContext;
 const sharedAudioCtx = AudioCtx ? new AudioCtx() : null;
 
 let isMusicPlaying = false;
+let userMutedManually = false;
 
-// 1. Bouton pour lancer / couper la musique d'ambiance
+// Lance la musique et met à jour le bouton
+function startBackgroundMusic() {
+    if (!bgMusic || isMusicPlaying || userMutedManually) return;
+    bgMusic.play()
+        .then(() => {
+            isMusicPlaying = true;
+            if (soundToggle) soundToggle.textContent = '🔊 Musique : ON';
+        })
+        .catch(() => {
+            // En attente du premier clic si le navigateur bloque l'autoplay
+        });
+}
+
+// 1. Tentative de lancement automatique à l'ouverture de la page
+window.addEventListener('DOMContentLoaded', startBackgroundMusic);
+
+// 2. Déclenchement automatique au 1er clic n'importe où sur la page si bloqué au chargement
+document.addEventListener('click', (e) => {
+    if (e.target !== soundToggle && !isMusicPlaying && !userMutedManually) {
+        startBackgroundMusic();
+    }
+});
+
+// 3. Bouton manuel pour couper / relancer la musique d'ambiance
 if (soundToggle && bgMusic) {
     soundToggle.addEventListener('click', () => {
         if (!isMusicPlaying) {
+            userMutedManually = false;
             bgMusic.play()
                 .then(() => {
                     soundToggle.textContent = '🔊 Musique : ON';
@@ -33,11 +58,12 @@ if (soundToggle && bgMusic) {
             bgMusic.pause();
             soundToggle.textContent = '🎵 Musique : OFF';
             isMusicPlaying = false;
+            userMutedManually = true;
         }
     });
 }
 
-// 2. Carillon de secours à 4 notes (Do - Mi - Sol - Do aigu)
+// 4. Carillon de secours à 4 notes
 function playMagicChime() {
     if (!sharedAudioCtx) return;
     if (sharedAudioCtx.state === 'suspended') {
@@ -67,12 +93,12 @@ function playMagicChime() {
     });
 }
 
-// 3. Bruitage à l'ouverture d'une case
+// 5. Bruitage à l'ouverture d'une case
 function playOpenSound() {
     if (openSound && openSound.getAttribute('src')) {
-        const soundClone = openSound.cloneNode();
-        soundClone.volume = openSound.volume;
-        soundClone.play().catch(() => {
+        const audio = new Audio(openSound.getAttribute('src'));
+        audio.volume = 0.5;
+        audio.play().catch(() => {
             playMagicChime();
         });
     } else {
