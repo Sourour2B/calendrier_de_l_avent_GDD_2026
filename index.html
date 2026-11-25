@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Calendrier de l'Avent Indemnisation 2026</title>
     <link rel="stylesheet" href="style.css">
-
-
 </head>
 <body>
 
-    <h1 class="title">Calendrier de l'avent 2026  </h1>
-	<h1 class="title">24 Jours pour Transformer les Doutes en Certitudes. </h1>
+    <h1 class="title">Calendrier de l'avent 2026</h1>
+    <h2 class="title">24 Jours pour Transformer les Doutes en Certitudes.</h2>
 
-<div id="calendar-container">
-
+    <div id="calendar-container">
         <div class="day day-10" data-day="10"></div>
         <div class="day day-1" data-day="1"></div>
         <div class="day day-24" data-day="24"></div>
@@ -39,18 +36,19 @@
         <div class="day day-13" data-day="13"></div>
         <div class="day day-18" data-day="18"></div>
         <div class="day day-9" data-day="9"></div>
-
-
-
     </div>
 
     <div id="modal-overlay" class="hidden">
         <div id="modal-content">
             <span id="close-modal">&times;</span>
-            <div id="modal-body">
-                </div>
+            <div id="modal-body"></div>
         </div>
     </div>
+
+    <button id="sound-toggle" aria-label="Activer ou couper la musique">🎵 Musique : ON</button>
+
+    <audio id="bg-music" src="ambiance.mp3" loop preload="auto"></audio>
+    <audio id="open-sound" src="ouverture.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>
