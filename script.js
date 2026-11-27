@@ -225,7 +225,7 @@ const ADVENT_CONTENT = {
     },
     24: {
         title: "Jour 24 : Joyeux Réveillon !",
-        text: 'Voici un cadeau spécial : 🎁<br><br><a href="https://youtu.be/_f7N_11F_fU" target="_blank" rel="noopener noreferrer">Regarder la vidéo sur YouTube</a>',
+        text: 'Voici un cadeau spécial : 🎁<br><br><a href="https://youtu.be/7v09uDZgmhM" target="_blank" rel="noopener noreferrer">Regarder la vidéo sur YouTube</a>',
         image: "assets/contenu-1.jpg"
     }
 };
